@@ -23,9 +23,12 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
+
 var wiredep = require('wiredep').stream;
-var http = require('http');
-var st = require('st');
+
+// Server Things
+var http = require('http'),
+    st = require('st');
 
 var AUTOPREFIXER_BROWSERS = [
     'ie >= 10',
@@ -42,10 +45,10 @@ var AUTOPREFIXER_BROWSERS = [
 // Lint JavaScript
 gulp.task('jshint', function() {
     return gulp.src(['app/scripts/**/*.js'])
-        .pipe($.livereload())
         .pipe($.jshint())
         .pipe($.jshint.reporter('jshint-stylish'))
-        .pipe($.jshint.reporter('fail'));
+        .pipe($.jshint.reporter('fail'))
+        .pipe($.livereload());
 });
 
 // Compile and automatically prefix stylesheets
@@ -75,46 +78,63 @@ gulp.task('styles', function() {
         }))
         .pipe($.livereload());
 });
-// Optimize images
-gulp.task('images', function() {
-    return gulp.src('app/images/**/*')
-        .pipe($.cache($.imagemin({
-            progressive: true,
-            interlaced: true
-        })))
-        .pipe(gulp.dest('app/images'))
-        .pipe($.size({
-            title: 'images'
-        }))
-        .pipe($.livereload());
-});
 
 // My Own Wiredep Task for Bower Options
 gulp.task('wiredep', function() {
-    gulp.src('app/styles/*.{sass,scss}')
-        .pipe(wiredep({
-            ignorePath: /^(\.\.\/)+/
+  gulp.src('app/styles/*.{sass,scss}')
+      .pipe(wiredep({
+          ignorePath: /^(\.\.\/)+/
         }))
-        .pipe(gulp.dest('app/styles'));
+      .pipe(gulp.dest('app/styles'));
     gulp.src('app/*.html')
         .pipe(wiredep({
             ignorePath: /^(\.\.\/)+/
         }))
-        .pipe(gulp.dest('app'));
-});
-gulp.task('watch', function() {
-    $.livereload.listen('app');
-    gulp.watch(['./app/styles/**/*.sass', './app/styles/**/*.scss'], ['styles']);
-    gulp.watch(['app/images/**/*'], ['images']);
-    gulp.watch(['./app/scripts/**/*.js'], ['jshint']);
+        .pipe(gulp.dest('app'))
+        .pipe($.livereload());
 });
 
-gulp.task('server', function(done) {
-  http.createServer(
-    st({ path: __dirname + '/app', index: 'index.html', cache: false, gzip: true })
-  ).listen(8080, done);
+gulp.task('inject', function (){
+  var sources = gulp.src(['scripts/**/*.js', 'styles/**/*.css'], {read: false, cwd: './app'});
+  return gulp.src('./app/index.html')
+              .pipe($.inject(sources))
+              .pipe(gulp.dest('./app'))
+              .pipe($.livereload());
 });
+
+gulp.task('watch', function() {
+    $.livereload.listen({basePath: 'app'});
+    gulp.watch(['./app/styles/**/*.sass', './app/styles/**/*.scss'], ['styles']);
+    gulp.watch(['./app/scripts/**/*.js'], ['jshint']);
+    gulp.watch(['./app/**/*.html'],  ['views']);
+});
+
+gulp.task('views', function (){
+  return gulp.src('app/**/*.html')
+              .pipe($.livereload());
+});
+
+gulp.task('server', function() {
+  http.createServer(
+    st({ path: __dirname + '/app', index: 'index.html', cache: false})
+  ).listen(8080, function () {
+    console.log('Serving files on localhost:8080');
+  });
+});
+
+// Build dist folder minifying files
+gulp.task('html', function (){
+  var assets = $.useref.assets();
+  return gulp.src('app/index.html')
+        .pipe(assets)
+        .pipe($.if('*.js', $.uglify()))
+        .pipe($.if('*.css', $.csso()))
+        .pipe(assets.restore())
+        .pipe($.useref())
+        .pipe(gulp.dest('dist'));
+});
+
 
 gulp.task('default', function(cb) {
-    runSequence('styles', ['wiredep', 'jshint', 'watch'], cb)
+    runSequence('styles', ['wiredep', 'inject'], ['jshint', 'watch'], 'server', cb);
 });
