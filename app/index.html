@@ -10,8 +10,12 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width,initial-scale = 1.0,maximum-scale = 1.0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Sistema Servidor de Archivos Estaticos con MEAN Stack">
+    <meta name="description" content="Aplicacion de facturacion y cotizacion para freelancers">
+
+
     <base href="/">
+    <title>FactApp - {Need Slogan}</title>
+
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- Author Information -->
     <meta name="author" content="Misael Taveras">
@@ -30,13 +34,16 @@
     <!-- Support for wPhone HomeScreen -->
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#03345D">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- build:css css/vendor.css -->
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
       <!-- bower:css -->
+      <link rel="stylesheet" href="vendor/animate.css/animate.css" />
+      <link rel="stylesheet" href="vendor/materialize/bin/materialize.css" />
       <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css css/main.css -->
+    <!-- build:css styles/main.css -->
       <!-- inject:css -->
+      <link rel="stylesheet" href="/styles/style.css">
       <!-- endinject -->
     <!-- endbuild -->
 </head>
@@ -45,13 +52,25 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <p>Hello world! This is HTML5 Boilerplate.</p>
+    <p class="primary">Hello world! This is HTML5 Boilerplate.</p>
     <!-- build:js js/vendor.js -->
       <!-- bower:js -->
+      <script src="vendor/jquery/dist/jquery.js"></script>
+      <script src="vendor/angular/angular.js"></script>
+      <script src="vendor/angular-animate/angular-animate.js"></script>
+      <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="vendor/firebase/firebase.js"></script>
+      <script src="vendor/angularfire/dist/angularfire.js"></script>
+      <script src="vendor/materialize/bin/materialize.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:js js/main.js -->
+    <!-- build:js scripts/main.js -->
       <!-- inject:js -->
+      <script src="/scripts/app.config.js"></script>
+      <script src="/scripts/app.js"></script>
+      <script src="/scripts/functions.js"></script>
+      <script src="/scripts/controllers/controller.home.js"></script>
+      <script src="/scripts/services/service.factura.js"></script>
       <!-- endinject -->
     <!-- endbuild -->
 </body>

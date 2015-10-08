@@ -1,0 +1,6 @@
+/*!
+FactApp StyleSheet - http://github.com/taverasmisael/factApp
+Licensed under the Apache License 2.0 - http://opensource.org/licenses/Apache
+
+Copyright (c) 2015 Misael Taveras
+*/.primary{background:#03a9f4;color:#fff}.primary.dark{background:#0288d1;color:#fff}.primary.light{background:#b3e5fc;color:#212121}.primary-text{color:#03a9f4}.primary-text.dark{color:#0288d1}.primary-text.light{color:#b3e5fc}.accent{background:#009688;color:#fff}.accent-text{color:#009688}.alert{background:#FF8A80}.alert-text{color:#FF8A80}.pending{background:#ffff8d}.pending-text{color:#ffff8d}.success{background:#B9F6CA}.success-text{color:#B9F6CA}body{color:#212121}

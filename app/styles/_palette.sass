@@ -1,13 +1,13 @@
 // Main app colors
 .primary
   background: color($primary-color, "base")
-  color: set-text-color($primary-color)
+  color: set-text-color(color($primary-color, "base"))
   &.dark
     background: color($primary-color, "darken-2")
-    color: set-text-color($primary-color)
+    color: set-text-color(color($primary-color, "darken-2"))
   &.light
     background: color($primary-color, "lighten-4")
-    color: set-text-color($primary-color)
+    color: set-text-color(color($primary-color, "lighten-4"))
   &-text
     color: color($primary-color, "base")
     &.dark
@@ -15,24 +15,24 @@
     &.light
       color: color($primary-color, "lighten-4")
 
-.acent
-  background: color($acent-color, "base")
-  color: set-text-color($acent-color)
+.accent
+  background: color($accent-color, "base")
+  color: set-text-color(color($accent-color, "base"))
   &-text
-    color: color($acent-color, "base")
+    color: color($accent-color, "base")
 // Status app colors
 .alert
-  background: color("red", "acent-1")
+  background: color("red", "accent-1")
   &-text
-    color: color("red", "acent-1")
+    color: color("red", "accent-1")
 .pending
-  background: color("yellow", "acent-1")
+  background: color("yellow", "accent-1")
   &-text
-    color: color("yellow", "acent-1")
+    color: color("yellow", "accent-1")
 .success
-  background: color("green", "acent-1")
+  background: color("green", "accent-1")
   &-text
-    color: color("green", "acent-1")
+    color: color("green", "accent-1")
 
 body
   color: color("grey", "darken-4")
