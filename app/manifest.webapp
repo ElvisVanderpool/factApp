@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "name": "FactApp",
+  "launch_path": "/index.html",
+  "description": "Una aplicacion para el manejo de cuentas, facturas y cotizaciones.",
+  "icons": {
+    "128": "/images/touch/icon-128x128.png"
+  },
+  "developer": {
+    "name": "Misael Taveras",
+    "url": "http://github.com/taverasmisael"
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "default_locale": "es",
+  "permissions": {
+  },
+  "locales": {
+    "es": {
+      "name": "FactApp",
+      "description": "Una aplicacion para el manejo de cuentas, facturas y cotizaciones."
+    },
+    "en": {
+      "name": "FactApp",
+      "description": "An app for invoice and bills managment."
+    }
+  }
+}
