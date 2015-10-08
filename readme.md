@@ -18,7 +18,7 @@ Si, es solo un proyecto que a penas inicia, pero será grande. Por ahora el proy
 commit en blanco practicamente.
 
 #¿Qué puedo esperar?
-* Una aplicacion en tiempo real es lo que se está construyendo aquí. Con herramientas como [firebase](http://firebase.io)
+* Una aplicacion en tiempo real es lo que se está construyendo aquí. Con herramientas como [firebase](http://firebase.com)
 y AngularJs, todas nuestras cuentas estarán sincronizadas en las nubes y serán actualizadas en tiempo
 real en todos nuestros dispositivos
 
