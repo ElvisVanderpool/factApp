@@ -1,0 +1,38 @@
+// Main app colors
+.primary
+  background: color($primary-color, "base")
+  color: set-text-color($primary-color)
+  &.dark
+    background: color($primary-color, "darken-2")
+    color: set-text-color($primary-color)
+  &.light
+    background: color($primary-color, "lighten-4")
+    color: set-text-color($primary-color)
+  &-text
+    color: color($primary-color, "base")
+    &.dark
+      color: color($primary-color, "darken-2")
+    &.light
+      color: color($primary-color, "lighten-4")
+
+.acent
+  background: color($acent-color, "base")
+  color: set-text-color($acent-color)
+  &-text
+    color: color($acent-color, "base")
+// Status app colors
+.alert
+  background: color("red", "acent-1")
+  &-text
+    color: color("red", "acent-1")
+.pending
+  background: color("yellow", "acent-1")
+  &-text
+    color: color("yellow", "acent-1")
+.success
+  background: color("green", "acent-1")
+  &-text
+    color: color("green", "acent-1")
+
+body
+  color: color("grey", "darken-4")
