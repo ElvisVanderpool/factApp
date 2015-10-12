@@ -1,6 +1,6 @@
 (function(){
     'use strict';
 
-   angular.module('factApp', []);
+   angular.module('factApp', ['ngAnimate','ui.router', 'firebase']);
   
 })();
